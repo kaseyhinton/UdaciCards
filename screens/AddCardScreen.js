@@ -13,7 +13,7 @@ export default class AddCardScreen extends React.Component {
   }
 
   static navigationOptions = {
-    title: "Add CARD"
+    title: "Add Card"
   };
 
   async onSave() {
@@ -25,11 +25,12 @@ export default class AddCardScreen extends React.Component {
       answer: this.state.answer
     };
 
+    const DECK_ID = this.props.navigation.getParam("deck").id;
+
     try {
-      await saveCard(CARD, "f75f27bd-ee0f-41fe-a661-d9acb470eaaa");
-      const updatedDeck = await getDeck("f75f27bd-ee0f-41fe-a661-d9acb470eaaa");
-      console.log(updatedDeck);
-      //TODO: add redirect on success
+      await saveCard(CARD, DECK_ID);
+      this.props.navigation.state.params.getDecks();
+      this.props.navigation.navigate('Home');
     } catch (error) {
       console.log(error);
       //TODO: throw error
@@ -37,9 +38,12 @@ export default class AddCardScreen extends React.Component {
   }
 
   render() {
+    const { navigation } = this.props;
+    const DECK = navigation.getParam("deck");
+
     return (
       <ScrollView style={styles.container}>
-        <Text>Add Deck</Text>
+        <Text>Add Card To {DECK.title}</Text>
         <TextInput
           style={{ height: 40, marginTop: 24, marginBottom: 24 }}
           onChangeText={question => this.setState({ question })}
