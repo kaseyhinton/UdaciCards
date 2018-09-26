@@ -27,22 +27,20 @@ export default class HomeScreen extends React.Component {
   };
 
   async componentDidMount() {
-    await this._getDecks();
+    await this.getDecks();
   }
 
-  async _getDecks() {
+  async getDecks() {
     try {
       const decks = await getDecks();
       this.setState({ decks });
-      console.log(this.state);
-    } catch(error){
+    } catch (error) {
       console.log(error);
     }
   }
 
   render() {
     const { navigate } = this.props.navigation;
-
     return (
       <View style={styles.container}>
         <ScrollView
@@ -66,7 +64,12 @@ export default class HomeScreen extends React.Component {
               this.state.decks.length > 0 &&
               this.state.decks.map(deck => (
                 <MonoText
-                  onPress={() => navigate("AddCard", { deck, getDecks: this._getDecks.bind(this) })}
+                  onPress={() =>
+                    navigate("Deck", {
+                      deck,
+                      getDecks: this.getDecks.bind(this)
+                    })
+                  }
                   key={deck.id}
                   style={styles.codeHighlightText}
                 >
@@ -74,32 +77,7 @@ export default class HomeScreen extends React.Component {
                 </MonoText>
               ))}
           </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity
-              onPress={this._handleHelpPress}
-              style={styles.helpLink}
-            >
-              <Text style={styles.helpLinkText}>
-                Help, it didn’t automatically reload!
-              </Text>
-            </TouchableOpacity>
-          </View>
         </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>
-            This is a tab bar. You can edit it in:
-          </Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.navigationFilename]}
-          >
-            <MonoText style={styles.codeHighlightText}>
-              navigation/MainTabNavigator.js
-            </MonoText>
-          </View>
-        </View>
       </View>
     );
   }
