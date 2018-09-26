@@ -29,17 +29,11 @@ export const getDeck = async id => {
   }
 };
 
-export const getAll = async () => {
+export const getDecks = async () => {
   try {
-    return AsyncStorage.getAllKeys((err, keys) => {
-      AsyncStorage.multiGet(keys, (err, stores) => {
-        stores.map((result, i, store) => {
-          // get at each store's key/value so you can work with it
-          let key = store[i][0];
-          let value = store[i][1];
-        });
-      });
-    });
+    const keys = await AsyncStorage.getAllKeys();
+    const stores = await AsyncStorage.multiGet(keys);
+    return stores.map((result, i, store) => JSON.parse(store[i][1]));
   } catch (error) {
     console.log(error);
   }
