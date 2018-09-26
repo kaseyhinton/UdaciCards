@@ -8,6 +8,14 @@ export const saveDeck = async deck => {
   }
 };
 
+export const removeDeck = async id => {
+  try {
+    await AsyncStorage.removeItem(`@deck:${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const saveCard = async (card, deckId) => {
   try {
     const DECK = JSON.parse(await getDeck(deckId));
