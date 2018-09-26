@@ -12,20 +12,37 @@ import { WebBrowser } from "expo";
 
 import { MonoText } from "../components/StyledText";
 
-import { saveDeck, getDeck } from "../database/db";
+import { getDecks } from "../database/db";
 
 export default class HomeScreen extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      decks: []
+    };
+  }
+
   static navigationOptions = {
     header: null
   };
 
   async componentDidMount() {
-    await saveDeck({id: 1, name: "Java 1400"});
-    const deck = await getDeck(1);
-    console.log(deck);
+    await this._getDecks();
+  }
+
+  async _getDecks() {
+    try {
+      const decks = await getDecks();
+      this.setState({ decks });
+      console.log(this.state);
+    } catch(error){
+      console.log(error);
+    }
   }
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <View style={styles.container}>
         <ScrollView
@@ -44,19 +61,18 @@ export default class HomeScreen extends React.Component {
           </View>
 
           <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View
-              style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-            >
-              <MonoText style={styles.codeHighlightText}>
-                screens/HomeScreen.js
-              </MonoText>
-            </View>
-
-            <Text style={styles.getStartedText}>kk</Text>
+            {this.state &&
+              this.state.decks &&
+              this.state.decks.length > 0 &&
+              this.state.decks.map(deck => (
+                <MonoText
+                  onPress={() => navigate("AddCard", { deck, getDecks: this._getDecks.bind(this) })}
+                  key={deck.id}
+                  style={styles.codeHighlightText}
+                >
+                  {deck.title} ({deck.questions.length} cards)
+                </MonoText>
+              ))}
           </View>
 
           <View style={styles.helpContainer}>
@@ -86,29 +102,6 @@ export default class HomeScreen extends React.Component {
         </View>
       </View>
     );
-  }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use
-          useful development tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
   }
 
   _handleLearnMorePress = () => {
@@ -159,7 +152,8 @@ const styles = StyleSheet.create({
     marginVertical: 7
   },
   codeHighlightText: {
-    color: "rgba(96,100,109, 0.8)"
+    color: "rgba(96,100,109, 0.8)",
+    marginBottom: 16
   },
   codeHighlightContainer: {
     backgroundColor: "rgba(0,0,0,0.05)",
