@@ -8,9 +8,11 @@ export const saveDeck = async deck => {
   }
 };
 
-export const saveCard = async card => {
+export const saveCard = async (card, deckId) => {
   try {
-    await AsyncStorage.setItem("@card:${card.id}", JSON.stringify(card));
+    const DECK = JSON.parse(await getDeck(deckId));
+    DECK.questions.push(card);
+    saveDeck(DECK);
   } catch (error) {
     console.log(error);
   }
