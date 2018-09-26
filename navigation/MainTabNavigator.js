@@ -8,6 +8,7 @@ import {
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import AddDeckScreen from "../screens/AddDeckScreen";
+import AddCardScreen from "../screens/AddCardScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 
 const HomeStack = createStackNavigator({
@@ -46,6 +47,25 @@ AddDeckStack.navigationOptions = {
   )
 };
 
+
+const AddCardStack = createStackNavigator({
+  AddCard: AddCardScreen
+});
+
+AddCardStack.navigationOptions = {
+  tabBarLabel: "Add Card",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === "ios"
+          ? `ios-link${focused ? "" : "-outline"}`
+          : "md-link"
+      }
+    />
+  )
+};
+
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen
 });
@@ -67,5 +87,6 @@ SettingsStack.navigationOptions = {
 export default createBottomTabNavigator({
   HomeStack,
   AddDeckStack,
+  AddCardStack,
   SettingsStack
 });
