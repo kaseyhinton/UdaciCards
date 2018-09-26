@@ -2,20 +2,11 @@ import React from "react";
 import { ScrollView, StyleSheet, Text, Button, View } from "react-native";
 
 export default class DeckScreen extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      question: "",
-      answer: ""
-    };
-  }
-
   static navigationOptions = {
     title: "Deck"
   };
 
   render() {
-    const { navigation } = this.props;
     const { navigate } = this.props.navigation;
     const DECK = navigation.getParam("deck");
 
