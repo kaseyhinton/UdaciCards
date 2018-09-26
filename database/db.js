@@ -29,7 +29,7 @@ export const getDeck = async id => {
 
 export const getAll = async () => {
   try {
-    AsyncStorage.getAllKeys((err, keys) => {
+    return AsyncStorage.getAllKeys((err, keys) => {
       AsyncStorage.multiGet(keys, (err, stores) => {
         stores.map((result, i, store) => {
           // get at each store's key/value so you can work with it
