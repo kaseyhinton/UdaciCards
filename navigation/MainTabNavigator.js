@@ -14,7 +14,10 @@ import QuizScreen from "../screens/QuizScreen";
 import DeckScreen from "../screens/DeckScreen";
 
 const HomeStack = createStackNavigator({
-  Home: HomeScreen
+  Home: HomeScreen,
+  AddCard: AddCardScreen,
+  Quiz: QuizScreen,
+  Deck: DeckScreen
 });
 
 HomeStack.navigationOptions = {
@@ -49,24 +52,6 @@ AddDeckStack.navigationOptions = {
   )
 };
 
-const AddCardStack = createStackNavigator({
-  AddCard: AddCardScreen
-});
-
-AddCardStack.navigationOptions = {
-  tabBarLabel: "Add Card",
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === "ios"
-          ? `ios-link${focused ? "" : "-outline"}`
-          : "md-link"
-      }
-    />
-  )
-};
-
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen
 });
@@ -85,48 +70,8 @@ SettingsStack.navigationOptions = {
   )
 };
 
-const QuizStack = createStackNavigator({
-  Quiz: QuizScreen
-});
-
-QuizStack.navigationOptions = {
-  tabBarLabel: "Quiz",
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === "ios"
-          ? `ios-options${focused ? "" : "-outline"}`
-          : "md-options"
-      }
-    />
-  )
-};
-
-
-const DeckStack = createStackNavigator({
-  Deck: DeckScreen
-});
-
-DeckStack.navigationOptions = {
-  tabBarLabel: "Deck",
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === "ios"
-          ? `ios-options${focused ? "" : "-outline"}`
-          : "md-options"
-      }
-    />
-  )
-};
-
 export default createBottomTabNavigator({
   HomeStack,
   AddDeckStack,
-  AddCardStack,
   SettingsStack,
-  QuizStack,
-  DeckStack
 });
