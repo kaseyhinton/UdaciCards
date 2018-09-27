@@ -144,11 +144,13 @@ export default class QuizScreen extends React.Component {
       this.state.idx === this.state.deck.questions.length - 1
         ? {
             finished: true,
-            correct: this.state.correct + 1
+            correct: this.state.correct + 1,
+            showAnswer: false
           }
         : {
             correct: this.state.correct + 1,
-            idx: this.state.idx + 1
+            idx: this.state.idx + 1,
+            showAnswer: false
           };
     this.setState(update);
   }
@@ -156,8 +158,8 @@ export default class QuizScreen extends React.Component {
   _handleIncorrectPress() {
     const update =
       this.state.idx === this.state.deck.questions.length - 1
-        ? { finished: true }
-        : { idx: this.state.idx + 1 };
+        ? { finished: true, showAnswer: false }
+        : { idx: this.state.idx + 1, showAnswer: false };
     this.setState(update);
   }
 }
