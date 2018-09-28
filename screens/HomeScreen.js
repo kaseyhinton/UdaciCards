@@ -1,17 +1,13 @@
 import React from "react";
 import {
   Image,
-  Platform,
   ScrollView,
   StyleSheet,
-  Text,
-  TouchableOpacity,
   View
 } from "react-native";
 import { WebBrowser } from "expo";
-
+import FAB from 'react-native-fab';
 import { MonoText } from "../components/StyledText";
-
 import { getDecks } from "../database/db";
 
 export default class HomeScreen extends React.Component {
@@ -82,6 +78,14 @@ export default class HomeScreen extends React.Component {
                 </MonoText>
               ))}
           </View>
+          <FAB
+            onClickAction={() =>
+              navigate("AddDeck")
+            }
+            style={styles.fab}
+            buttonColor="#841584"
+            iconTextColor="#ffffff"
+          />
         </ScrollView>
       </View>
     );
@@ -106,7 +110,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff"
   },
   contentContainer: {
-    paddingTop: 30
+    flexGrow: 1,
+    paddingTop: 32
   },
   welcomeContainer: {
     alignItems: "center",
@@ -133,5 +138,10 @@ const styles = StyleSheet.create({
     color: "#841584",
     paddingTop: 8,
     paddingBottom: 8
+  },
+  fab: {
+    position: "absolute",
+    bottom: 16,
+    right: 16
   }
 });
