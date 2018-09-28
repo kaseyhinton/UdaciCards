@@ -40,26 +40,26 @@ export default class DeckScreen extends React.Component {
             flexGrow: 1,
             justifyContent: 'space-between'
         }}>
-        <Text style={styles.mainText}>{this.state.deck.title} ({this.state.deck.questions.length} cards)</Text>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.mainText}>{this.state.deck.title} ({this.state.deck.questions.length} cards)</Text>
+          <FAB
+            onClickAction={() =>
+              navigate("AddCard", {
+                deck: this.state.deck
+              })
+            }
+            style={styles.fab}
+            buttonColor="#841584"
+            iconTextColor="#ffffff"
+          />
+        </View>
           {this.state.deck.questions.length > 0 &&
-            <View style={{ flex: 1, marginTop: 16 }}>
-              <Button
-                onPress={() => navigate("Quiz", { deck: this.state.deck })}
-                title="Start Quiz"
-                color="#841584"
-              />
-            </View>
+            <Button
+              onPress={() => navigate("Quiz", { deck: this.state.deck })}
+              title="Start Quiz"
+              color="#841584"
+            />
           }
-        <FAB
-          onClickAction={() =>
-            navigate("AddCard", {
-              deck: this.state.deck
-            })
-          }
-          style={styles.fab}
-          buttonColor="#841584"
-          iconTextColor="#ffffff"
-        />
       </ScrollView>
     );
   }
@@ -78,8 +78,6 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   fab: {
-    position: "absolute",
-    bottom: 16,
-    right: 16
+    position: "relative"
   }
 });
