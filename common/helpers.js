@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Stylesheet, AsyncStorage } from 'react-native';
 import { Notifications, Permissions } from 'expo';
+import moment from 'moment';
 
 const NOTIFICATION_KEY = "udaciCards:notifications";
 
@@ -34,11 +35,17 @@ export async function setLocalNotification() {
             console.log('Making notification');
             Notifications.cancelAllScheduledNotificationsAsync();
 
-            let tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            tomorrow.setHours(20);
-            tomorrow.setMinutes(0);
-            //8am
+            // VanillaJS Date
+            // let tomorrow = new Date();
+            // tomorrow.setDate(tomorrow.getDate() + 1);
+            // tomorrow.setHours(20);
+            // tomorrow.setMinutes(0);
+            
+            // Test notifications 1 minute
+            // let tomorrow = moment().add(1, 'm').toDate();
+
+            let tomorrow = moment().add(1, 'days').hours(8).startOf('hour').toDate();
+
             Notifications.scheduleLocalNotificationAsync(
                 createNotification(),
                 {
