@@ -35,7 +35,7 @@ export default class AddDeckScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Text>Add Deck</Text>
+        <Text>Title</Text>
         <TextInput
           style={{ height: 40, marginTop: 24, marginBottom: 24 }}
           onChangeText={text => this.setState({ text })}
