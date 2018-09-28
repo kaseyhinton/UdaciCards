@@ -28,7 +28,7 @@ export default class HomeScreen extends React.Component {
 
   componentDidMount() {
     this.subs = [
-      this.props.navigation.addListener('didFocus', async () => await this.getDecks()),
+      this.props.navigation.addListener('willFocus', async () => await this.getDecks()),
     ];
   }
   
@@ -72,8 +72,7 @@ export default class HomeScreen extends React.Component {
                 <MonoText
                   onPress={() =>
                     navigate("Deck", {
-                      deck,
-                      getDecks: this.getDecks.bind(this)
+                      deck
                     })
                   }
                   key={deck.id}
