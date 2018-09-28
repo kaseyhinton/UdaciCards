@@ -40,7 +40,8 @@ export const getDeck = async id => {
 export const getDecks = async () => {
   try {
     const keys = await AsyncStorage.getAllKeys();
-    const stores = await AsyncStorage.multiGet(keys);
+    const filteredKeys = keys.filter(key => key.startsWith("@deck"));
+    const stores = await AsyncStorage.multiGet(filteredKeys);
     return stores.map((result, i, store) => JSON.parse(store[i][1]));
   } catch (error) {
     console.log(error);
