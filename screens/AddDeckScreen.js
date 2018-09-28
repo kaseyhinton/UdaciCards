@@ -26,10 +26,9 @@ export default class AddDeckScreen extends React.Component {
 
     try {
       await saveDeck(DECK);
-      //TODO: add redirect on success
+      this.props.navigation.navigate('Home');
     } catch (error) {
       console.log(error);
-      //TODO: throw error
     }
   }
 
