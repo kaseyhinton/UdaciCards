@@ -28,8 +28,8 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === "ios"
-          ? `ios-information-circle${focused ? "" : "-outline"}`
-          : "md-information-circle"
+          ? `ios-home${focused ? "" : "-outline"}`
+          : "md-home"
       }
     />
   )
@@ -46,8 +46,8 @@ SettingsStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === "ios"
-          ? `ios-options${focused ? "" : "-outline"}`
-          : "md-options"
+          ? `ios-settings${focused ? "" : "-outline"}`
+          : "md-settings"
       }
     />
   )
@@ -55,5 +55,9 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  SettingsStack,
+  SettingsStack
+}, {
+  tabBarOptions: {
+    showLabel: false,
+  }
 });
