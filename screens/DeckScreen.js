@@ -5,7 +5,11 @@ export default class DeckScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      deck: {}
+      deck: {
+        questions: [
+
+        ]
+      }
     };
   }
 
@@ -31,13 +35,12 @@ export default class DeckScreen extends React.Component {
 
     return (
       <ScrollView style={styles.container}>
-        <Text>{this.state.deck.title}</Text>
+        <Text style={styles.mainText}>{this.state.deck.title} ({this.state.deck.questions.length} cards)</Text>
         <View style={{ marginTop: 16 }}>
           <Button
             onPress={() =>
               navigate("AddCard", {
-                deck: this.state.deck,
-                getDecks: this.props.navigation.state.params.getDecks
+                deck: this.state.deck
               })
             }
             title="Add Card"
@@ -61,5 +64,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: "#fff"
+  },
+  mainText: {
+    fontSize: 28,
+    textAlign: "center",
+    marginTop: 16,
+    marginBottom: 16
   }
 });
