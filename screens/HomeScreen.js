@@ -26,8 +26,14 @@ export default class HomeScreen extends React.Component {
     header: null
   };
 
-  async componentDidMount() {
-    await this.getDecks();
+  componentDidMount() {
+    this.subs = [
+      this.props.navigation.addListener('didFocus', async () => await this.getDecks()),
+    ];
+  }
+  
+  componentWillUnmount() {
+    this.subs.forEach(sub => sub.remove());
   }
 
   async getDecks() {
