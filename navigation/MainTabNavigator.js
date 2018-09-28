@@ -17,7 +17,8 @@ const HomeStack = createStackNavigator({
   Home: HomeScreen,
   AddCard: AddCardScreen,
   Quiz: QuizScreen,
-  Deck: DeckScreen
+  Deck: DeckScreen,
+  AddDeck: AddDeckScreen
 });
 
 HomeStack.navigationOptions = {
@@ -29,24 +30,6 @@ HomeStack.navigationOptions = {
         Platform.OS === "ios"
           ? `ios-information-circle${focused ? "" : "-outline"}`
           : "md-information-circle"
-      }
-    />
-  )
-};
-
-const AddDeckStack = createStackNavigator({
-  AddDeck: AddDeckScreen
-});
-
-AddDeckStack.navigationOptions = {
-  tabBarLabel: "Add Deck",
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === "ios"
-          ? `ios-link${focused ? "" : "-outline"}`
-          : "md-link"
       }
     />
   )
@@ -72,6 +55,5 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  AddDeckStack,
   SettingsStack,
 });
