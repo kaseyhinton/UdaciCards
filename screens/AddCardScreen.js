@@ -29,26 +29,22 @@ export default class AddCardScreen extends React.Component {
 
     try {
       await saveCard(CARD, DECK_ID);
-      this.props.navigation.state.params.getDecks();
       this.props.navigation.navigate('Home');
     } catch (error) {
       console.log(error);
-      //TODO: throw error
     }
   }
 
   render() {
-    const { navigation } = this.props;
-    const DECK = navigation.getParam("deck");
-
     return (
       <ScrollView style={styles.container}>
-        <Text>Add Card To {DECK.title}</Text>
+        <Text>Question</Text>
         <TextInput
           style={{ height: 40, marginTop: 24, marginBottom: 24 }}
           onChangeText={question => this.setState({ question })}
           value={this.state.question}
         />
+        <Text>Answer</Text>
         <TextInput
           style={{ height: 40, marginTop: 24, marginBottom: 24 }}
           onChangeText={answer => this.setState({ answer })}
