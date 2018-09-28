@@ -58,6 +58,6 @@ export default createBottomTabNavigator({
   SettingsStack
 }, {
   tabBarOptions: {
-    showLabel: false,
+    showLabel: false
   }
 });
