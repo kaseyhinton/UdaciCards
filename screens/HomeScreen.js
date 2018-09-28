@@ -52,9 +52,7 @@ export default class HomeScreen extends React.Component {
           <View style={styles.welcomeContainer}>
             <Image
               source={
-                __DEV__
-                  ? require("../assets/images/robot-dev.png")
-                  : require("../assets/images/robot-prod.png")
+                require("../assets/images/app-icon.png")
               }
               style={styles.welcomeImage}
             />
@@ -135,7 +133,7 @@ const styles = StyleSheet.create({
   deckLink: {
     fontSize: 18,
     textAlign: "center",
-    color: "#841584",
+    color: "#616161",
     paddingTop: 8,
     paddingBottom: 8
   },
