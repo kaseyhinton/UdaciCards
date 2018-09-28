@@ -1,5 +1,6 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, Button, View } from "react-native";
+import FAB from 'react-native-fab';
 
 export default class DeckScreen extends React.Component {
   constructor() {
@@ -34,28 +35,31 @@ export default class DeckScreen extends React.Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container}
+            contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: 'space-between'
+        }}>
         <Text style={styles.mainText}>{this.state.deck.title} ({this.state.deck.questions.length} cards)</Text>
-        <View style={{ marginTop: 16 }}>
-          <Button
-            onPress={() =>
-              navigate("AddCard", {
-                deck: this.state.deck
-              })
-            }
-            title="Add Card"
-            color="#841584"
-          />
-        </View>
-        {this.state.deck.questions.length > 0 &&
-          <View style={{ marginTop: 16 }}>
-            <Button
-              onPress={() => navigate("Quiz", { deck: this.state.deck })}
-              title="Start Quiz"
-              color="#841584"
-            />
-          </View>
-        }
+          {this.state.deck.questions.length > 0 &&
+            <View style={{ flex: 1, marginTop: 16 }}>
+              <Button
+                onPress={() => navigate("Quiz", { deck: this.state.deck })}
+                title="Start Quiz"
+                color="#841584"
+              />
+            </View>
+          }
+        <FAB
+          onClickAction={() =>
+            navigate("AddCard", {
+              deck: this.state.deck
+            })
+          }
+          style={styles.fab}
+          buttonColor="#841584"
+          iconTextColor="#ffffff"
+        />
       </ScrollView>
     );
   }
@@ -72,5 +76,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 16,
     marginBottom: 16
+  },
+  fab: {
+    position: "absolute",
+    bottom: 16,
+    right: 16
   }
 });
