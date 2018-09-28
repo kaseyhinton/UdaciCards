@@ -47,13 +47,15 @@ export default class DeckScreen extends React.Component {
             color="#841584"
           />
         </View>
-        <View style={{ marginTop: 16 }}>
-          <Button
-            onPress={() => navigate("Quiz", { deck: this.state.deck })}
-            title="Start Quiz"
-            color="#841584"
-          />
-        </View>
+        {this.state.deck.questions.length > 0 &&
+          <View style={{ marginTop: 16 }}>
+            <Button
+              onPress={() => navigate("Quiz", { deck: this.state.deck })}
+              title="Start Quiz"
+              color="#841584"
+            />
+          </View>
+        }
       </ScrollView>
     );
   }
