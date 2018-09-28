@@ -29,6 +29,7 @@ export default class AddCardScreen extends React.Component {
 
     try {
       await saveCard(CARD, DECK_ID);
+      this.setState({question: "", answer: ""});
       this.props.navigation.navigate('Home');
     } catch (error) {
       console.log(error);

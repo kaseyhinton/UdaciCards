@@ -26,6 +26,7 @@ export default class AddDeckScreen extends React.Component {
 
     try {
       await saveDeck(DECK);
+      this.setState({text: ""});
       this.props.navigation.navigate('Home');
     } catch (error) {
       console.log(error);
