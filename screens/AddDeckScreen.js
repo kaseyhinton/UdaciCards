@@ -38,7 +38,10 @@ export default class AddDeckScreen extends React.Component {
       <ScrollView style={styles.container}>
         <Text>Title</Text>
         <TextInput
-          style={{ height: 40, marginTop: 24, marginBottom: 24 }}
+          selectionColor="#841584"
+          placeholder="Type the title of the deck here"
+          underlineColorAndroid="#841584"
+          style={{ height: 55, marginBottom: 24 }}
           onChangeText={text => this.setState({ text })}
           value={this.state.text}
         />

@@ -41,13 +41,19 @@ export default class AddCardScreen extends React.Component {
       <ScrollView style={styles.container}>
         <Text>Question</Text>
         <TextInput
-          style={{ height: 40, marginTop: 24, marginBottom: 24 }}
+          selectionColor="#841584"
+          underlineColorAndroid="#841584"
+          placeholder="Type the question here"
+          style={{ height: 55, marginBottom: 24 }}
           onChangeText={question => this.setState({ question })}
           value={this.state.question}
         />
         <Text>Answer</Text>
         <TextInput
-          style={{ height: 40, marginTop: 24, marginBottom: 24 }}
+          selectionColor="#841584"
+          underlineColorAndroid="#841584"
+          placeholder="Type the answer here"
+          style={{ height: 55, marginBottom: 24 }}
           onChangeText={answer => this.setState({ answer })}
           value={this.state.answer}
         />
