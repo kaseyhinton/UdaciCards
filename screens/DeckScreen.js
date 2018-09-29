@@ -1,15 +1,13 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, Button, View } from "react-native";
-import FAB from 'react-native-fab';
+import FAB from "react-native-fab";
 
 export default class DeckScreen extends React.Component {
   constructor() {
     super();
     this.state = {
       deck: {
-        questions: [
-
-        ]
+        questions: []
       }
     };
   }
@@ -35,13 +33,17 @@ export default class DeckScreen extends React.Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <ScrollView style={styles.container}
-            contentContainerStyle={{
-            flexGrow: 1,
-            justifyContent: 'space-between'
-        }}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: "space-between"
+        }}
+      >
         <View style={{ flex: 1 }}>
-          <Text style={styles.mainText}>{this.state.deck.title} ({this.state.deck.questions.length} cards)</Text>
+          <Text style={styles.mainText}>
+            {this.state.deck.title} ({this.state.deck.questions.length} cards)
+          </Text>
           <FAB
             onClickAction={() =>
               navigate("AddCard", {
@@ -53,13 +55,13 @@ export default class DeckScreen extends React.Component {
             iconTextColor="#ffffff"
           />
         </View>
-          {this.state.deck.questions.length > 0 &&
-            <Button
-              onPress={() => navigate("Quiz", { deck: this.state.deck })}
-              title="Start Quiz"
-              color="#841584"
-            />
-          }
+        {this.state.deck.questions.length > 0 && (
+          <Button
+            onPress={() => navigate("Quiz", { deck: this.state.deck })}
+            title="Start Quiz"
+            color="#841584"
+          />
+        )}
       </ScrollView>
     );
   }
