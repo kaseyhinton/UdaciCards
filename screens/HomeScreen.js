@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  View
-} from "react-native";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 import { WebBrowser } from "expo";
-import FAB from 'react-native-fab';
+import FAB from "react-native-fab";
 import { MonoText } from "../components/StyledText";
 import { getDecks } from "../database/db";
 
@@ -24,10 +19,13 @@ export default class HomeScreen extends React.Component {
 
   componentDidMount() {
     this.subs = [
-      this.props.navigation.addListener('willFocus', async () => await this.getDecks()),
+      this.props.navigation.addListener(
+        "willFocus",
+        async () => await this.getDecks()
+      )
     ];
   }
-  
+
   componentWillUnmount() {
     this.subs.forEach(sub => sub.remove());
   }
@@ -51,11 +49,17 @@ export default class HomeScreen extends React.Component {
         >
           <View style={styles.welcomeContainer}>
             <Image
-              source={
-                require("../assets/images/app-icon.png")
-              }
+              source={require("../assets/images/app-icon.png")}
               style={styles.welcomeImage}
             />
+          </View>
+
+          <View style={styles.getStartedContainer}>
+            {this.state &&
+              this.state.decks &&
+              this.state.decks.length === 0 && (
+                <MonoText>No Decks Created Yet!</MonoText>
+              )}
           </View>
 
           <View style={styles.getStartedContainer}>
@@ -77,9 +81,7 @@ export default class HomeScreen extends React.Component {
               ))}
           </View>
           <FAB
-            onClickAction={() =>
-              navigate("AddDeck")
-            }
+            onClickAction={() => navigate("AddDeck")}
             style={styles.fab}
             buttonColor="#841584"
             iconTextColor="#ffffff"
