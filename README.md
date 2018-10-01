@@ -10,3 +10,6 @@ npm install
 npm start
 ```
 
+### Tested Platforms
+
+Android Version 9
