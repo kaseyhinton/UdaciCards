@@ -55,6 +55,14 @@ export default class QuizScreen extends React.Component {
           </View>
           <View style={{ marginTop: 16 }}>
             <Button
+              onPress={this._handleBackToDeckPress.bind(this)}
+              title="Back To Deck"
+              color="#841584"
+            />
+          </View>
+
+          <View style={{ marginTop: 16 }}>
+            <Button
               onPress={this._handleHomePress.bind(this)}
               title="Home"
               color="#841584"
@@ -130,6 +138,16 @@ export default class QuizScreen extends React.Component {
     }
   }
 
+  _handleBackToDeckPress() {
+    this.setState({
+      idx: 0,
+      correct: 0,
+      showAnswer: false,
+      finished: false
+    });
+    this.props.navigation.navigate("Deck");
+  }
+
   _handleTryAgainPress() {
     this.setState({
       idx: 0,
@@ -138,7 +156,7 @@ export default class QuizScreen extends React.Component {
       finished: false
     });
   }
-
+  
   _handleHomePress() {
     this.setState({
       idx: 0,
