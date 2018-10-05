@@ -54,7 +54,7 @@ export default class SettingsScreen extends React.Component {
       await deleteAllDecks();
       this.props.navigation.navigate("Home");
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   }
 }

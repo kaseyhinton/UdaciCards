@@ -32,7 +32,6 @@ export async function setLocalNotification() {
     if (data === null) {
         const status = (await Permissions.askAsync(Permissions.NOTIFICATIONS)).status;
         if  (status === 'granted') {
-            console.log('Making notification');
             Notifications.cancelAllScheduledNotificationsAsync();
 
             // VanillaJS Date
