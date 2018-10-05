@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, StyleSheet, Text, Button, View } from "react-native";
+import { ScrollView, StyleSheet, Alert, Button, View } from "react-native";
 import { deleteAllDecks } from "../database/db";
 import ToggleSwitch from "toggle-switch-react-native";
 
@@ -50,12 +50,24 @@ export default class SettingsScreen extends React.Component {
   }
 
   async _handleDeleteAllDecksPressed() {
-    try {
-      await deleteAllDecks();
-      this.props.navigation.navigate("Home");
-    } catch (error) {
-      console.log(error);
-    }
+    Alert.alert(
+      "Destructive Action",
+      "This will delete all decks. Would you like to continue?",
+      [
+        { text: "NO" },
+        {
+          text: "YES",
+          onPress: async () => {
+            try {
+              await deleteAllDecks();
+              this.props.navigation.navigate("Home");
+            } catch (error) {
+              alert(error);
+            }
+          }
+        }
+      ]
+    );
   }
 }
 

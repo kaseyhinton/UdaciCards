@@ -35,7 +35,7 @@ export default class HomeScreen extends React.Component {
       const decks = await getDecks();
       this.setState({ decks });
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   }
 

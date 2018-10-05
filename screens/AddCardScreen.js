@@ -39,7 +39,7 @@ export default class AddCardScreen extends React.Component {
       this.setState({ question: "", answer: "" });
       this.props.navigation.navigate("Home");
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   }
 
