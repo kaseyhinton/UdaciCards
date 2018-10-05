@@ -38,16 +38,19 @@ export default class QuizScreen extends React.Component {
 
     if (this.state.finished) {
       return (
-        <ScrollView style={styles.container}
-            contentContainerStyle={{
+        <ScrollView
+          style={styles.container}
+          contentContainerStyle={{
             flexGrow: 1,
-            justifyContent: 'space-between'
-        }}>
-          <View style={{ flex:1, justifyContent: "center" }}>
+            justifyContent: "space-between"
+          }}
+        >
+          <View style={{ flex: 1, justifyContent: "center" }}>
             <Text style={styles.mainText}>Quiz Complete</Text>
             <Text style={styles.mainText}>
               You Scored{" "}
-              {((this.state.correct / deck.questions.length) * 100).toFixed(1)} %
+              {((this.state.correct / deck.questions.length) * 100).toFixed(1)}{" "}
+              %
             </Text>
             <Text style={styles.subText}>
               {this.state.correct} / {deck.questions.length}
@@ -75,18 +78,20 @@ export default class QuizScreen extends React.Component {
 
     if (deck && deck.questions && deck.questions.length > 0) {
       return (
-        <ScrollView style={styles.container}
-              contentContainerStyle={{
-              flexGrow: 1,
-              justifyContent: 'space-between'
-          }}>
+        <ScrollView
+          style={styles.container}
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: "space-between"
+          }}
+        >
           <Text>{deck.title}</Text>
           <Text>
             {idx + 1} / {deck.questions.length}
           </Text>
 
           {this.state.showAnswer ? (
-            <View style={{ flex:1, justifyContent: "center" }}>
+            <View style={{ flex: 1, justifyContent: "center" }}>
               <Text style={styles.mainText}>{deck.questions[idx].answer}</Text>
               <Text
                 style={styles.subText}
@@ -96,7 +101,7 @@ export default class QuizScreen extends React.Component {
               </Text>
             </View>
           ) : (
-            <View style={{ flex:1, justifyContent: "center" }}>
+            <View style={{ flex: 1, justifyContent: "center" }}>
               <Text style={styles.mainText}>
                 {deck.questions[idx].question}
               </Text>
@@ -139,7 +144,7 @@ export default class QuizScreen extends React.Component {
       finished: false
     });
   }
-  
+
   _handleHomePress() {
     this.setState({
       idx: 0,

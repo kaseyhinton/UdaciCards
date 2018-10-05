@@ -53,11 +53,14 @@ SettingsStack.navigationOptions = {
   )
 };
 
-export default createBottomTabNavigator({
-  HomeStack,
-  SettingsStack
-}, {
-  tabBarOptions: {
-    showLabel: false
+export default createBottomTabNavigator(
+  {
+    HomeStack,
+    SettingsStack
+  },
+  {
+    tabBarOptions: {
+      showLabel: false
+    }
   }
-});
+);
