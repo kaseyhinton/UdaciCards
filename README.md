@@ -18,4 +18,3 @@ Android Version 9
 - Hook up the notification toggle in settings
 - Make list of decks UI better. (HomeScreen)
 - Add in loading progress bar
-- Add in a confirm dialog for delete all decks
